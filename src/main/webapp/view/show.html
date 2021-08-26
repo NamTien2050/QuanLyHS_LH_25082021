@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Home</h2>
+    <table>
+        <a href="/home/create" class=" btn btn-warning">create maytinh</a>
+        <br>
+        <form action="/home/finByName" method="get">
+            <input type="text" class="form-control" placeholder="Tim kiem theo ten" name="findByName">
+            <input type="hidden" name="action" value="finByName">
+            <button type="submit" class="btn btn-success">FindBy</button>
+        </form>
+        <thead>
+        <tr>
+            <th>STT</th>
+            <td>Ten</td>
+            <td>Ngay sinh</td>
+            <td>Dia chi</td>
+            <td>So dien thoai</td>
+            <td>Email</td>
+        </tr>
+        </thead>
+        <body>
+        <tr th:each="student,loop:${postStudent}">
+            <td th:text="${loop.index +1}"></td>
+            <td th:text="${postStudent.name}"></td>
+            <td th:text="${postStudent.dateOfBirth}"></td>
+            <td th:text="${postStudent.address}"></td>
+            <td th:text="${postStudent.phoneNumber}"></td>
+            <td><img th:text="${khachsan.email}" width="300px" height="200px"></td>
+            <td><a th:href="@{/home/edit/{id}(id=${postStudent.id})}" class=" btn btn-warning">Edit</a></td>
+            <td><a th:href="@{/home/delete/{id}(id=${postStudent.id})}" class=" btn btn-warning">Delete</a></td>
+        </tr>
+        </body>
+    </table>
+    </form>
+</div>
+
+</body>
+</html>
